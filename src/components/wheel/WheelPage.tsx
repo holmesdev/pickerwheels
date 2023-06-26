@@ -10,8 +10,8 @@ import { WheelData, WheelState, defaultInitialState, getCurrentSelection, wheelR
 import Wheel from './Wheel'
 import { Database } from '@/db/types'
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context'
-import { Button } from '@mui/material'
-import { Share } from '@mui/icons-material'
+import { Button, Link } from '@mui/material'
+import { Share, Twitter } from '@mui/icons-material'
 import { useSnackbar } from 'notistack'
 
 function getInitialState(wheelData: WheelData | null) {
@@ -88,6 +88,9 @@ export default function WheelPage({ wheelData }: { wheelData: WheelData | null }
           <Share />
           Share
         </Button>
+        <Link href={`https://twitter.com/intent/tweet?text=Check%20out%20my%20wheel%20at&url=${window.location.href}`} target="_blank">
+          <Twitter />
+        </Link>
         <Wheel
           options={state.options}
           colors={state.colors}
