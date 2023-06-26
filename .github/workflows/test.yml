@@ -1,0 +1,40 @@
+name: Test
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    permissions:
+      actions: write
+      checks: write
+      contents: write
+      repository-projects: read
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: yarn install --immutable
+
+      - name: Test Project
+        run: yarn test
+
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: jest-report
+          path: reports/
+          retention-days: 30
+
+      - name: Show Report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Jest Tests
+          path: reports/jest.xml
+          reporter: jest-junit

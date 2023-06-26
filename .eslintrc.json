@@ -1,0 +1,12 @@
+{
+  "extends": ["next/core-web-vitals", "plugin:storybook/recommended"],
+  "rules": {
+    "max-len": [
+      "error",
+      {
+        "code": 140
+      }
+    ],
+    "quotes": ["error", "single"]
+  }
+}
