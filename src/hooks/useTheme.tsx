@@ -1,6 +1,6 @@
 import { createTheme, ThemeOptions } from '@mui/material/styles'
 
-import RobotoFlex from './fonts'
+import RobotoFlex from '@/utils/fonts'
 import { useDarkMode } from './useDarkMode'
 import Link from 'next/link'
 import { forwardRef } from 'react'

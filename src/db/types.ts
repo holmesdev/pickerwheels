@@ -34,13 +34,95 @@ export interface Database {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      wheel_colors: {
+        Row: {
+          hex_code: string
+          id: number
+          wheel_id: number
+        }
+        Insert: {
+          hex_code: string
+          id?: number
+          wheel_id: number
+        }
+        Update: {
+          hex_code?: string
+          id?: number
+          wheel_id?: number
+        }
+      }
+      wheel_options: {
+        Row: {
+          created_at: string
+          enabled: boolean
+          id: number
+          label: string
+          updated_at: string
+          wheel_id: number
+        }
+        Insert: {
+          created_at?: string
+          enabled?: boolean
+          id?: number
+          label: string
+          updated_at?: string
+          wheel_id: number
+        }
+        Update: {
+          created_at?: string
+          enabled?: boolean
+          id?: number
+          label?: string
+          updated_at?: string
+          wheel_id?: number
+        }
+      }
+      wheels: {
+        Row: {
+          created_at: string
+          id: number
+          last_position: number
+          short_url: string
+          show_option_labels: boolean
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          last_position: number
+          short_url: string
+          show_option_labels: boolean
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          last_position?: number
+          short_url?: string
+          show_option_labels?: boolean
+          updated_at?: string
+        }
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      generate_wheel_short_url: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
+      upsert_wheel: {
+        Args: {
+          short_url: string | null
+          last_position: number
+          show_option_labels: boolean
+          option_labels: string[]
+          options_enabled: boolean[]
+          colors: string[]
+        }
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never

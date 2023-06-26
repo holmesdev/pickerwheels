@@ -2,7 +2,7 @@
 
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles'
 import { NextAppDirEmotionCacheProvider } from './EmotionCache'
-import { useTheme } from './theme'
+import { useTheme } from '@/hooks/useTheme'
 import { CssBaseline } from '@mui/material'
 
 export default function ThemeProvider({ darkModeCookie, children }: { darkModeCookie: string | undefined; children: React.ReactNode }) {

@@ -1,14 +1,14 @@
-import Header from '@/components/layout/Header'
 import './globals.css'
-import robotoFlex from '@/components/theme/fonts'
-import ThemeProvider from '@/components/theme/ThemeProvider'
 import { cookies } from 'next/headers'
+import ThemeProvider from '@/components/theme/ThemeProvider'
 import SnackbarProvider from '@/components/theme/SnackbarProvider'
 import Footer from '@/components/layout/Footer'
+import Header from '@/components/layout/Header'
+import robotoFlex from '@/utils/fonts'
 
 export const metadata = {
-  title: 'spinner-wheel-upgrade',
-  description: 'spinner-wheel-upgrade app created by Pain Driven Dev',
+  title: 'Spinner Wheel',
+  description: 'Spin that wheel!',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

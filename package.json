@@ -16,7 +16,7 @@
     "storybook:dev": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "chromatic": "chromatic --exit-once-uploaded",
-    "db:types": "supabase gen types typescript --local > src/db/types.ts",
+    "db:types": "line_number=$(sed -n '/upsert_wheel/=' src/db/types.ts) && supabase gen types typescript --local | sed \"$(expr $line_number + 2)s/string/string | null/\" > src/db/types.ts",
     "db:create-migration": "supabase migration new",
     "db:migrate": "supabase db reset"
   },

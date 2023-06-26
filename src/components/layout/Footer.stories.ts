@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import Home from './[[...shortUrl]]/page'
+import Footer from './Footer'
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
-const meta: Meta<typeof Home> = {
-  title: 'spinner-wheel-upgrade/Home',
-  component: Home,
+const meta: Meta<typeof Footer> = {
+  title: 'Spinner Wheel/Footer',
+  component: Footer,
   tags: ['autodocs'],
 }
 
 export default meta
-type Story = StoryObj<typeof Home>
+type Story = StoryObj<typeof Footer>
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
-export const HomePage: Story = {}
+export const Default: Story = {}
