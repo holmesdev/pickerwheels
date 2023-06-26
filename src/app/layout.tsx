@@ -7,8 +7,8 @@ import SnackbarProvider from '@/components/theme/SnackbarProvider'
 import Footer from '@/components/layout/Footer'
 
 export const metadata = {
-  title: 'Template',
-  description: 'Template app created by Pain Driven Dev',
+  title: 'spinner-wheel-upgrade',
+  description: 'spinner-wheel-upgrade app created by Pain Driven Dev',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

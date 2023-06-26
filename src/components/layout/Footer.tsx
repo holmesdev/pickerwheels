@@ -3,5 +3,5 @@
  */
 export default function Footer() {
   const year = new Date().getFullYear()
-  return <footer className="text-center">&copy; {year} Template</footer>
+  return <footer className="text-center">&copy; {year} spinner-wheel-upgrade</footer>
 }
