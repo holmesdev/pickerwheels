@@ -1,4 +1,4 @@
-import { Add } from '@mui/icons-material'
+import Add from '@mui/icons-material/Add'
 import { IconButton, InputAdornment, TextField } from '@mui/material'
 import { FormEvent, useState } from 'react'
 

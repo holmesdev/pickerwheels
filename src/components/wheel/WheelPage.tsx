@@ -11,7 +11,8 @@ import Wheel from './Wheel'
 import { Database } from '@/db/types'
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context'
 import { Button, Link } from '@mui/material'
-import { Share, Twitter } from '@mui/icons-material'
+import Share from '@mui/icons-material/Share'
+import Twitter from '@mui/icons-material/Twitter'
 import { useSnackbar } from 'notistack'
 
 function getInitialState(wheelData: WheelData | null) {

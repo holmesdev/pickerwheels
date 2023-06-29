@@ -1,4 +1,5 @@
-import { CopyAll, DeleteForever } from '@mui/icons-material'
+import CopyAll from '@mui/icons-material/CopyAll'
+import DeleteForever from '@mui/icons-material/DeleteForever'
 import { Checkbox, IconButton, InputAdornment, TextField } from '@mui/material'
 import { Option } from './option'
 
