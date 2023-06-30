@@ -7,6 +7,13 @@
         "code": 140
       }
     ],
-    "quotes": ["error", "single"]
+    "quotes": ["error", "single"],
+    "no-restricted-imports": [
+      "error",
+      {
+        "name": "@mui/icons-material",
+        "message": "MUI icons should be imported with tree-shaking to avoid blowing up dev builds"
+      }
+    ]
   }
 }
