@@ -57,6 +57,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-config-next", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:13.4.5"],\
             ["eslint-plugin-storybook", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:0.6.12"],\
             ["jest", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:29.5.0"],\
+            ["jest-canvas-mock", "npm:2.5.2"],\
             ["jest-environment-jsdom", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:29.5.0"],\
             ["jest-junit", "npm:16.0.0"],\
             ["next", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:13.4.6"],\
@@ -11553,6 +11554,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["cssfontparser", [\
+        ["npm:1.2.1", {\
+          "packageLocation": "./.yarn/cache/cssfontparser-npm-1.2.1-f48947509b-952d487cdd.zip/node_modules/cssfontparser/",\
+          "packageDependencies": [\
+            ["cssfontparser", "npm:1.2.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["cssom", [\
         ["npm:0.3.8", {\
           "packageLocation": "./.yarn/cache/cssom-npm-0.3.8-a9291d36ff-24beb3087c.zip/node_modules/cssom/",\
@@ -15276,6 +15286,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["jest-canvas-mock", [\
+        ["npm:2.5.2", {\
+          "packageLocation": "./.yarn/cache/jest-canvas-mock-npm-2.5.2-d82f044139-a3004d2e96.zip/node_modules/jest-canvas-mock/",\
+          "packageDependencies": [\
+            ["jest-canvas-mock", "npm:2.5.2"],\
+            ["cssfontparser", "npm:1.2.1"],\
+            ["moo-color", "npm:1.0.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["jest-changed-files", [\
         ["npm:29.5.0", {\
           "packageLocation": "./.yarn/cache/jest-changed-files-npm-29.5.0-9ca582b770-a67a7cb3c1.zip/node_modules/jest-changed-files/",\
@@ -16791,6 +16812,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/mkdirp-classic-npm-0.5.3-3b5c991910-3f4e088208.zip/node_modules/mkdirp-classic/",\
           "packageDependencies": [\
             ["mkdirp-classic", "npm:0.5.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["moo-color", [\
+        ["npm:1.0.3", {\
+          "packageLocation": "./.yarn/cache/moo-color-npm-1.0.3-50b8650764-02bf59b6bb.zip/node_modules/moo-color/",\
+          "packageDependencies": [\
+            ["moo-color", "npm:1.0.3"],\
+            ["color-name", "npm:1.1.4"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -19776,6 +19807,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-config-next", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:13.4.5"],\
             ["eslint-plugin-storybook", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:0.6.12"],\
             ["jest", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:29.5.0"],\
+            ["jest-canvas-mock", "npm:2.5.2"],\
             ["jest-environment-jsdom", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:29.5.0"],\
             ["jest-junit", "npm:16.0.0"],\
             ["next", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:13.4.6"],\
