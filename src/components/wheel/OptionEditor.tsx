@@ -5,22 +5,17 @@ import { Option } from './option'
 
 export default function OptionEditor({
   option,
-  onLabelChange,
-  onEnableChange,
-  onCopy,
-  onDelete,
+  onLabelChange = () => {},
+  onEnableChange = () => {},
+  onCopy = () => {},
+  onDelete = () => {},
 }: {
   option: Option
-  onLabelChange: (value: string) => void
-  onEnableChange: (value: boolean) => void
-  onCopy: () => void
-  onDelete: () => void
+  onLabelChange?: (value: string) => void
+  onEnableChange?: (value: boolean) => void
+  onCopy?: () => void
+  onDelete?: () => void
 }) {
-  onLabelChange ||= () => {}
-  onEnableChange ||= () => {}
-  onCopy ||= () => {}
-  onDelete ||= () => {}
-
   return (
     <TextField
       variant="outlined"
