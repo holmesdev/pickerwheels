@@ -44,12 +44,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@storybook/testing-library", "npm:0.1.0"],\
             ["@supabase/auth-helpers-nextjs", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:0.7.2"],\
             ["@supabase/supabase-js", "npm:2.26.0"],\
+            ["@testing-library/dom", "npm:9.3.1"],\
             ["@testing-library/jest-dom", "npm:5.16.5"],\
             ["@testing-library/react", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:14.0.0"],\
+            ["@testing-library/user-event", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:14.4.3"],\
             ["@types/jest", "npm:29.5.2"],\
             ["@types/node", "npm:20.3.1"],\
             ["@types/react", "npm:18.2.12"],\
             ["@types/react-dom", "npm:18.2.6"],\
+            ["@types/testing-library__jest-dom", "npm:5.14.6"],\
             ["autoprefixer", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:10.4.14"],\
             ["chromatic", "npm:6.19.9"],\
             ["encoding", "npm:0.1.13"],\
@@ -8283,6 +8286,21 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["pretty-format", "npm:27.5.1"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:9.3.1", {\
+          "packageLocation": "./.yarn/cache/@testing-library-dom-npm-9.3.1-ec81dc9367-8ee3136451.zip/node_modules/@testing-library/dom/",\
+          "packageDependencies": [\
+            ["@testing-library/dom", "npm:9.3.1"],\
+            ["@babel/code-frame", "npm:7.22.5"],\
+            ["@babel/runtime", "npm:7.22.5"],\
+            ["@types/aria-query", "npm:5.0.1"],\
+            ["aria-query", "npm:5.1.3"],\
+            ["chalk", "npm:4.1.2"],\
+            ["dom-accessibility-api", "npm:0.5.16"],\
+            ["lz-string", "npm:1.5.0"],\
+            ["pretty-format", "npm:27.5.1"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["@testing-library/jest-dom", [\
@@ -8338,6 +8356,26 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@testing-library/user-event", "npm:13.5.0"]\
           ],\
           "linkType": "SOFT"\
+        }],\
+        ["npm:14.4.3", {\
+          "packageLocation": "./.yarn/cache/@testing-library-user-event-npm-14.4.3-2d1a75355f-852c48ea6d.zip/node_modules/@testing-library/user-event/",\
+          "packageDependencies": [\
+            ["@testing-library/user-event", "npm:14.4.3"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:14.4.3", {\
+          "packageLocation": "./.yarn/__virtual__/@testing-library-user-event-virtual-588b92aba6/0/cache/@testing-library-user-event-npm-14.4.3-2d1a75355f-852c48ea6d.zip/node_modules/@testing-library/user-event/",\
+          "packageDependencies": [\
+            ["@testing-library/user-event", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:14.4.3"],\
+            ["@testing-library/dom", "npm:9.3.1"],\
+            ["@types/testing-library__dom", null]\
+          ],\
+          "packagePeers": [\
+            "@testing-library/dom",\
+            "@types/testing-library__dom"\
+          ],\
+          "linkType": "HARD"\
         }],\
         ["virtual:b9e99adf1cea0d3665b87a7f4e72ecb22f533b0cdaabfd3a4b36f7bfeb99770ae85a9acf6bfb4c06c5da8f17a61bc43fc7737141d8a172e7f859f371b54d0604#npm:13.5.0", {\
           "packageLocation": "./.yarn/__virtual__/@testing-library-user-event-virtual-9e128bac68/0/cache/@testing-library-user-event-npm-13.5.0-1ff89b703a-16319de685.zip/node_modules/@testing-library/user-event/",\
@@ -19819,12 +19857,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@storybook/testing-library", "npm:0.1.0"],\
             ["@supabase/auth-helpers-nextjs", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:0.7.2"],\
             ["@supabase/supabase-js", "npm:2.26.0"],\
+            ["@testing-library/dom", "npm:9.3.1"],\
             ["@testing-library/jest-dom", "npm:5.16.5"],\
             ["@testing-library/react", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:14.0.0"],\
+            ["@testing-library/user-event", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:14.4.3"],\
             ["@types/jest", "npm:29.5.2"],\
             ["@types/node", "npm:20.3.1"],\
             ["@types/react", "npm:18.2.12"],\
             ["@types/react-dom", "npm:18.2.6"],\
+            ["@types/testing-library__jest-dom", "npm:5.14.6"],\
             ["autoprefixer", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:10.4.14"],\
             ["chromatic", "npm:6.19.9"],\
             ["encoding", "npm:0.1.13"],\

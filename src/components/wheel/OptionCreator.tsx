@@ -2,9 +2,7 @@ import Add from '@mui/icons-material/Add'
 import { IconButton, InputAdornment, TextField } from '@mui/material'
 import { FormEvent, useState } from 'react'
 
-export default function OptionCreator({ onAdd }: { onAdd: (value: string) => void }) {
-  onAdd ||= () => {}
-
+export default function OptionCreator({ onAdd = () => {} }: { onAdd?: (value: string) => void }) {
   const [label, setLabel] = useState('')
 
   return (
