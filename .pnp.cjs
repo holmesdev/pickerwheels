@@ -49,7 +49,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@testing-library/react", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:14.0.0"],\
             ["@testing-library/user-event", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:14.4.3"],\
             ["@types/jest", "npm:29.5.2"],\
-            ["@types/node", "npm:20.3.1"],\
+            ["@types/node", "npm:20.4.1"],\
             ["@types/react", "npm:18.2.12"],\
             ["@types/react-dom", "npm:18.2.6"],\
             ["@types/testing-library__jest-dom", "npm:5.14.6"],\
@@ -8644,6 +8644,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-node-npm-20.3.1-86012346c0-63a393ab6d.zip/node_modules/@types/node/",\
           "packageDependencies": [\
             ["@types/node", "npm:20.3.1"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:20.4.1", {\
+          "packageLocation": "./.yarn/cache/@types-node-npm-20.4.1-16fae4d18f-22cbcc792f.zip/node_modules/@types/node/",\
+          "packageDependencies": [\
+            ["@types/node", "npm:20.4.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -19757,7 +19764,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@testing-library/react", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:14.0.0"],\
             ["@testing-library/user-event", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:14.4.3"],\
             ["@types/jest", "npm:29.5.2"],\
-            ["@types/node", "npm:20.3.1"],\
+            ["@types/node", "npm:20.4.1"],\
             ["@types/react", "npm:18.2.12"],\
             ["@types/react-dom", "npm:18.2.6"],\
             ["@types/testing-library__jest-dom", "npm:5.14.6"],\
