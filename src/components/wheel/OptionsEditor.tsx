@@ -1,6 +1,6 @@
 import OptionEditor from './OptionEditor'
 import OptionCreator from './OptionCreator'
-import { Option } from './option'
+import { Option } from './Option'
 import { Dispatch, memo } from 'react'
 import { WheelActions } from './wheelReducer'
 

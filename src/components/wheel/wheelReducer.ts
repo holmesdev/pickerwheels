@@ -1,4 +1,4 @@
-import { Option } from './option'
+import { Option } from './Option'
 
 const PI = Math.PI
 const TAU = 2 * PI
