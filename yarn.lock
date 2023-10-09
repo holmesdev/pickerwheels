@@ -3007,12 +3007,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/bundle-analyzer@npm:13.4.7":
-  version: 13.4.7
-  resolution: "@next/bundle-analyzer@npm:13.4.7"
+"@next/bundle-analyzer@npm:13.5.4":
+  version: 13.5.4
+  resolution: "@next/bundle-analyzer@npm:13.5.4"
   dependencies:
     webpack-bundle-analyzer: 4.7.0
-  checksum: d19c53a11b922d517ed43dc4218f2e4b431b18a8c89075c1b7c0a33535ecfb56608673ed2ff015e024c5f96a8d08bc4527ebc195c4ed535d69aae285141027ad
+  checksum: 8233a46f037deeceeb0c3d374857aa8b0e394ed44b03cc7b98eed0a9d894bf7d37cae2d330bcf4d94cd0a5a6b37b8eadfc4e7acb5baae6f79d9c8ade8783ef6a
   languageName: node
   linkType: hard
 
@@ -14658,7 +14658,7 @@ __metadata:
     "@emotion/styled": ^11.11.0
     "@mui/icons-material": ^5.11.16
     "@mui/material": 5.13.6
-    "@next/bundle-analyzer": 13.4.7
+    "@next/bundle-analyzer": 13.5.4
     "@playwright/test": 1.35.1
     "@storybook/addon-essentials": 7.0.23
     "@storybook/addon-interactions": 7.0.23

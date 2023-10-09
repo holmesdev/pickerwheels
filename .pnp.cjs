@@ -33,7 +33,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/styled", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:11.11.0"],\
             ["@mui/icons-material", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:5.11.16"],\
             ["@mui/material", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:5.13.6"],\
-            ["@next/bundle-analyzer", "npm:13.4.7"],\
+            ["@next/bundle-analyzer", "npm:13.5.4"],\
             ["@playwright/test", "npm:1.35.1"],\
             ["@storybook/addon-essentials", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:7.0.23"],\
             ["@storybook/addon-interactions", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:7.0.23"],\
@@ -5809,10 +5809,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@next/bundle-analyzer", [\
-        ["npm:13.4.7", {\
-          "packageLocation": "./.yarn/cache/@next-bundle-analyzer-npm-13.4.7-c4267c7f8d-d19c53a11b.zip/node_modules/@next/bundle-analyzer/",\
+        ["npm:13.5.4", {\
+          "packageLocation": "./.yarn/cache/@next-bundle-analyzer-npm-13.5.4-1ee8661c8c-8233a46f03.zip/node_modules/@next/bundle-analyzer/",\
           "packageDependencies": [\
-            ["@next/bundle-analyzer", "npm:13.4.7"],\
+            ["@next/bundle-analyzer", "npm:13.5.4"],\
             ["webpack-bundle-analyzer", "npm:4.7.0"]\
           ],\
           "linkType": "HARD"\
@@ -19748,7 +19748,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/styled", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:11.11.0"],\
             ["@mui/icons-material", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:5.11.16"],\
             ["@mui/material", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:5.13.6"],\
-            ["@next/bundle-analyzer", "npm:13.4.7"],\
+            ["@next/bundle-analyzer", "npm:13.5.4"],\
             ["@playwright/test", "npm:1.35.1"],\
             ["@storybook/addon-essentials", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:7.0.23"],\
             ["@storybook/addon-interactions", "virtual:62233cce8beb3888ff03c81d1ddde366b2bd8b499a7ed99cae45749f9b3538c4bd846cbec050d9d7747d878db5ffe941bc0f4da3fd1a6eaa65e9222bb17ce32f#npm:7.0.23"],\
