@@ -1,7 +1,8 @@
 import { Dispatch, memo, useEffect, useRef } from 'react'
-import { Option } from './option'
-import { WheelActions } from './wheelReducer'
+import { Option } from './Option'
+import { SelectedWheelSound, WheelActions } from './wheelReducer'
 import robotoFlex from '@/utils/fonts'
+import { SOUND_CATEGORY } from './SoundCategory'
 
 const PI = Math.PI
 const TAU = 2 * PI
@@ -9,11 +10,21 @@ const friction = 0.991 // 0.995=soft, 0.99=mid, 0.98=hard
 const minimumAngularVelocity = 0.002 // Below that number will be treated as a stop
 const rand = (min: number, max: number) => Math.random() * (max - min) + min
 
+const playSound = (src: string, loop: boolean) => {
+  const audio = new Audio(src)
+  if (loop) {
+    audio.loop = true
+  }
+  audio.play()
+  return audio
+}
+
 function Wheel({
   options,
   colors,
   stoppedAngularPosition,
   showOptionLabels,
+  selectedWheelSounds,
   height,
   width,
   dispatch,
@@ -22,6 +33,7 @@ function Wheel({
   colors: string[]
   stoppedAngularPosition: number
   showOptionLabels: boolean
+  selectedWheelSounds: SelectedWheelSound[]
   height: number
   width: number
   dispatch: Dispatch<WheelActions>
@@ -29,6 +41,7 @@ function Wheel({
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const onSpin = useRef<() => void>()
   const currentAngularRotation = useRef(stoppedAngularPosition || 0)
+  const spinningAudioRef = useRef<HTMLAudioElement | null>(null)
 
   useEffect(() => {
     const ctx = canvasRef.current!.getContext('2d')!
@@ -40,6 +53,9 @@ function Wheel({
     let isSpinning = false
     let isAccelerating = false
     let animationFrame: number | null = null
+
+    const getSoundUrl = (soundCategoryId: SOUND_CATEGORY) =>
+      selectedWheelSounds.find((s) => s.soundCategoryId === soundCategoryId)?.soundUrl
 
     //* CSS rotate CANVAS Element */
     const rotate = () => {
@@ -90,12 +106,24 @@ function Wheel({
           isSpinning = false
           currentAngularVelocity = 0
           cancelAnimationFrame(animationFrame!)
+          const endSoundUrl = getSoundUrl(SOUND_CATEGORY.END)
+          if (endSoundUrl) {
+            playSound(endSoundUrl, false)
+          }
+          if (spinningAudioRef.current) {
+            spinningAudioRef.current.pause()
+          }
           dispatch({ type: 'SpinningStopped', stoppedAngularPosition: currentAngularRotation.current })
         }
       }
 
       const previousAngularRotation = currentAngularRotation.current
       currentAngularRotation.current = (currentAngularRotation.current + currentAngularVelocity) % TAU
+      const tickSoundUrl = getSoundUrl(SOUND_CATEGORY.TICK)
+      if (tickSoundUrl && Math.trunc(currentAngularRotation.current / arc) !== Math.trunc(previousAngularRotation / arc)) {
+        playSound(tickSoundUrl, false)
+      }
+
       rotate() // CSS rotate!
     }
 
@@ -112,13 +140,21 @@ function Wheel({
       isSpinning = true
       isAccelerating = true
       maximumAngularVelocity = rand(0.5, 0.9)
+      const startSoundUrl = getSoundUrl(SOUND_CATEGORY.START)
+      if (startSoundUrl) {
+        playSound(startSoundUrl, false)
+      }
+      const spinningSoundUrl = getSoundUrl(SOUND_CATEGORY.SPINNING)
+      if (spinningSoundUrl) {
+        spinningAudioRef.current = playSound(spinningSoundUrl, true)
+      }
       engine() // Start engine!
     }
 
     // INIT!
     options.filter((option) => option.enabled).forEach((option, i) => drawSector(option, i))
     rotate()
-  }, [colors, dispatch, options, showOptionLabels, stoppedAngularPosition, width, height])
+  }, [colors, dispatch, options, showOptionLabels, stoppedAngularPosition, width, height, selectedWheelSounds])
 
   return (
     <div id="wheelWrapper" className="inline-flex relative overflow-hidden">

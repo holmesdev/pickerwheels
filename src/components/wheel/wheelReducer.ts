@@ -1,4 +1,7 @@
 import { Option } from './Option'
+import { Sound } from './Sound'
+import { SOUND_CATEGORY, SoundCategory } from './SoundCategory'
+import { WheelSound } from './WheelSound'
 
 const PI = Math.PI
 const TAU = 2 * PI
@@ -43,6 +46,30 @@ export function wheelReducer(state: WheelState, action: WheelActions): WheelStat
         }),
       }
     }
+    case 'LoadSounds': {
+      return { ...state, sounds: action.sounds }
+    }
+    case 'LoadSoundCategories': {
+      return { ...state, soundCategories: action.soundCategories }
+    }
+    case 'LoadWheel': {
+      return {
+        ...state,
+        shortUrl: action.wheel.short_url,
+        stoppedAngularPosition: action.wheel.last_position,
+        showOptionLabels: action.wheel.show_option_labels,
+        options: action.wheel.wheel_options.map((o, i) => ({
+          id: i,
+          label: o.label,
+          enabled: o.enabled,
+        })),
+        colors: action.wheel.wheel_colors.map((c) => c.hex_code),
+        wheelSounds: action.wheel.wheel_sounds.map((ws) => ({
+          soundCategoryId: ws.sound_category_id,
+          soundId: ws.sound_id,
+        })),
+      }
+    }
     case 'RemoveOption': {
       return {
         ...state,
@@ -73,11 +100,26 @@ export function wheelReducer(state: WheelState, action: WheelActions): WheelStat
         showOptionLabels: !state.showOptionLabels,
       }
     }
+    case 'UpdateWheelSound': {
+      return {
+        ...state,
+        wheelSounds: state.wheelSounds
+          .filter((s) => s.soundCategoryId !== action.soundCategoryId)
+          .concat({ soundCategoryId: action.soundCategoryId, soundId: action.id }),
+      }
+    }
   }
 }
 
 export function getCurrentSelection(state: WheelState) {
   return state.options.filter((o) => o.enabled)[getIndex(state)]
+}
+
+export function getSelectedWheelSounds(state: WheelState): SelectedWheelSound[] {
+  return state.wheelSounds.map((ws) => {
+    const sound = state.sounds.find((s) => s.id === ws.soundId)
+    return { soundCategoryId: ws.soundCategoryId, soundUrl: sound?.url }
+  })
 }
 
 export type WheelState = {
@@ -88,18 +130,25 @@ export type WheelState = {
   showOptionLabels: boolean
   showWinnerDialog: boolean
   stoppedAngularPosition: number
+  sounds: Sound[]
+  soundCategories: SoundCategory[]
+  wheelSounds: WheelSound[]
 }
 
 export type WheelActions =
   | { type: 'AddOption'; label: string }
   | { type: 'CloseWinnerDialog'; hideOption: boolean }
   | { type: 'CopyOption'; id: number }
+  | { type: 'LoadSounds'; sounds: Sound[] }
+  | { type: 'LoadSoundCategories'; soundCategories: SoundCategory[] }
+  | { type: 'LoadWheel'; wheel: WheelData }
   | { type: 'RemoveOption'; id: number }
   | { type: 'RenameOption'; id: number; label: string }
   | { type: 'Spin' }
   | { type: 'SpinningStopped'; stoppedAngularPosition: number }
   | { type: 'ToggleOption'; id: number }
   | { type: 'ToggleOptionLabels' }
+  | { type: 'UpdateWheelSound'; soundCategoryId: number; id: number }
 
 export const defaultInitialState: WheelState = {
   colors: ['#264653', '#2a9d8f', '#e9c46a', '#f4a261', '#e76f51'], //https://coolors.co/palettes/trending
@@ -115,6 +164,14 @@ export const defaultInitialState: WheelState = {
   showOptionLabels: true,
   showWinnerDialog: false,
   stoppedAngularPosition: 0,
+  sounds: [],
+  soundCategories: [],
+  wheelSounds: [
+    { soundCategoryId: SOUND_CATEGORY.START, soundId: 1 },
+    { soundCategoryId: SOUND_CATEGORY.SPINNING, soundId: 2 },
+    { soundCategoryId: SOUND_CATEGORY.TICK, soundId: 3 },
+    { soundCategoryId: SOUND_CATEGORY.END, soundId: 4 },
+  ],
 }
 
 export type WheelData = {
@@ -128,4 +185,13 @@ export type WheelData = {
   wheel_colors: {
     hex_code: string
   }[]
+  wheel_sounds: {
+    sound_category_id: number
+    sound_id: number
+  }[]
+}
+
+export type SelectedWheelSound = {
+  soundCategoryId: number
+  soundUrl: string | undefined
 }

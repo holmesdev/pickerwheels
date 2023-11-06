@@ -21,4 +21,14 @@ begin
     insert into wheel_colors (wheel_id, hex_code) values (wheel_id, '#e9c46a');
     insert into wheel_colors (wheel_id, hex_code) values (wheel_id, '#f4a261');
     insert into wheel_colors (wheel_id, hex_code) values (wheel_id, '#e76f51');
+
+    insert into sound_categories (id, label) values (1, 'Start');
+    insert into sound_categories (id, label) values (2, 'Spinning');
+    insert into sound_categories (id, label) values (3, 'Tick');
+    insert into sound_categories (id, label) values (4, 'End');
+
+    insert into sounds (id, sound_category_id, label, url) values (1, 1, 'Button On', 'button-on.wav');
+    insert into sounds (id, sound_category_id, label, url) values (2, 2, 'Button On (Spinning)', 'button-on.wav');
+    insert into sounds (id, sound_category_id, label, url) values (3, 3, 'Button On (Tick)', 'button-on.wav');
+    insert into sounds (id, sound_category_id, label, url) values (4, 4, 'Button On (End)', 'button-on.wav');
 end $$

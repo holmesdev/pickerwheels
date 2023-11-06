@@ -34,6 +34,40 @@ export interface Database {
   }
   public: {
     Tables: {
+      sound_categories: {
+        Row: {
+          id: number
+          label: string
+        }
+        Insert: {
+          id?: number
+          label: string
+        }
+        Update: {
+          id?: number
+          label?: string
+        }
+      }
+      sounds: {
+        Row: {
+          id: number
+          label: string
+          sound_category_id: number
+          url: string
+        }
+        Insert: {
+          id?: number
+          label: string
+          sound_category_id: number
+          url: string
+        }
+        Update: {
+          id?: number
+          label?: string
+          sound_category_id?: number
+          url?: string
+        }
+      }
       wheel_colors: {
         Row: {
           hex_code: string
@@ -74,6 +108,23 @@ export interface Database {
           id?: number
           label?: string
           updated_at?: string
+          wheel_id?: number
+        }
+      }
+      wheel_sounds: {
+        Row: {
+          sound_category_id: number
+          sound_id: number
+          wheel_id: number
+        }
+        Insert: {
+          sound_category_id: number
+          sound_id: number
+          wheel_id: number
+        }
+        Update: {
+          sound_category_id?: number
+          sound_id?: number
           wheel_id?: number
         }
       }

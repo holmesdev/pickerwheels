@@ -6,7 +6,7 @@ import { SupabaseClient, createClientComponentClient } from '@supabase/auth-help
 import useWindowDimensions from '@/hooks/useWindowDimensions'
 import OptionsEditor from './OptionsEditor'
 import WinnerDialog from './WinnerDialog'
-import { WheelData, WheelState, defaultInitialState, getCurrentSelection, wheelReducer } from './wheelReducer'
+import { WheelData, WheelState, defaultInitialState, getCurrentSelection, getSelectedWheelSounds, wheelReducer } from './wheelReducer'
 import Wheel from './Wheel'
 import { Database } from '@/db/types'
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context'
@@ -14,25 +14,8 @@ import { Button, Link } from '@mui/material'
 import Share from '@mui/icons-material/Share'
 import Twitter from '@mui/icons-material/Twitter'
 import { useSnackbar } from 'notistack'
-
-function getInitialState(wheelData: WheelData | null) {
-  let initialState = { ...defaultInitialState }
-  if (wheelData) {
-    initialState = {
-      ...initialState,
-      shortUrl: wheelData.short_url,
-      stoppedAngularPosition: wheelData.last_position || defaultInitialState.stoppedAngularPosition,
-      showOptionLabels: wheelData.show_option_labels || defaultInitialState.showOptionLabels,
-      options: wheelData.wheel_options.map((o, i) => ({
-        id: i,
-        label: o.label,
-        enabled: o.enabled,
-      })),
-      colors: wheelData.wheel_colors.map((c) => c.hex_code),
-    }
-  }
-  return initialState
-}
+import { Sound } from './Sound'
+import { SoundCategory } from './SoundCategory'
 
 async function saveData(supabase: SupabaseClient<Database>, router: AppRouterInstance, state: WheelState) {
   const { data, error } = await supabase.rpc('upsert_wheel', {
@@ -48,13 +31,22 @@ async function saveData(supabase: SupabaseClient<Database>, router: AppRouterIns
   }
 }
 
-export default function WheelPage({ wheelData }: { wheelData: WheelData | null }) {
+export default function WheelPage({
+  wheelData,
+  sounds,
+  soundCategories,
+}: {
+  wheelData: WheelData | null
+  sounds: Sound[]
+  soundCategories: SoundCategory[]
+}) {
   const supabase = createClientComponentClient<Database>()
   const router = useRouter()
   const { enqueueSnackbar } = useSnackbar()
   const isUpdate = useRef(false)
+  const baseUrl = useRef('')
   const { width: windowWidth } = useWindowDimensions()
-  const [state, dispatch] = useReducer(wheelReducer, getInitialState(wheelData))
+  const [state, dispatch] = useReducer(wheelReducer, defaultInitialState)
 
   const share = () => {
     saveData(supabase, router, state).then(() => {
@@ -67,6 +59,24 @@ export default function WheelPage({ wheelData }: { wheelData: WheelData | null }
       }
     })
   }
+
+  useEffect(() => {
+    baseUrl.current = window.location.href
+  }, [])
+
+  useEffect(() => {
+    if (wheelData) {
+      dispatch({ type: 'LoadWheel', wheel: wheelData })
+    }
+  }, [wheelData])
+
+  useEffect(() => {
+    dispatch({ type: 'LoadSounds', sounds })
+  }, [sounds])
+
+  useEffect(() => {
+    dispatch({ type: 'LoadSoundCategories', soundCategories })
+  }, [soundCategories])
 
   useEffect(() => {
     if (state.shortUrl && isUpdate.current) {
@@ -89,7 +99,7 @@ export default function WheelPage({ wheelData }: { wheelData: WheelData | null }
           <Share />
           Share
         </Button>
-        <Link href={`https://twitter.com/intent/tweet?text=Check%20out%20my%20wheel%20at&url=${window.location.href}`} target="_blank">
+        <Link href={`https://twitter.com/intent/tweet?text=Check%20out%20my%20wheel%20at&url=${baseUrl.current}`} target="_blank">
           <Twitter />
         </Link>
         <Wheel
@@ -100,6 +110,7 @@ export default function WheelPage({ wheelData }: { wheelData: WheelData | null }
           width={wheelWidth}
           height={wheelHeight}
           dispatch={dispatch}
+          selectedWheelSounds={getSelectedWheelSounds(state)}
         />
       </main>
       <WinnerDialog open={state.showWinnerDialog} label={currentSelectionLabel} dispatch={dispatch} />
