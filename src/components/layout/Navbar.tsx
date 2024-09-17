@@ -47,7 +47,7 @@ export default function Navbar({ loggedIn, onLogOut }: { loggedIn: boolean; onLo
             <MenuIcon />
           </IconButton>
           <Link href="/" sx={{ color: 'inherit', flexGrow: 1 }} underline="none">
-            <Typography variant="h6">Spinner Wheel</Typography>
+            <Typography variant="h6">Picker Wheels</Typography>
           </Link>
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => {

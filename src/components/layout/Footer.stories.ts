@@ -4,7 +4,7 @@ import Footer from './Footer'
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta: Meta<typeof Footer> = {
-  title: 'Spinner Wheel/Footer',
+  title: 'Picker Wheels/Footer',
   component: Footer,
   tags: ['autodocs'],
 }

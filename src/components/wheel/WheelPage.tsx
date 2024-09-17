@@ -10,7 +10,7 @@ import { WheelData, WheelState, defaultInitialState, getCurrentSelection, wheelR
 import Wheel from './Wheel'
 import { Database } from '@/db/types'
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context'
-import { Button, Link } from '@mui/material'
+import { Button, IconButton, Link } from '@mui/material'
 import Share from '@mui/icons-material/Share'
 import Twitter from '@mui/icons-material/Twitter'
 import { useSnackbar } from 'notistack'
@@ -59,7 +59,7 @@ export default function WheelPage({ wheelData }: { wheelData: WheelData | null }
   const share = () => {
     saveData(supabase, router, state).then(() => {
       if (typeof navigator.share !== 'undefined') {
-        navigator.share({ title: 'Spinner Wheel', url: window.location.href })
+        navigator.share({ title: 'Picker Wheels', url: window.location.href })
       } else {
         navigator.clipboard.writeText(window.location.href).then(() => {
           enqueueSnackbar('Link copied to clipboard', { variant: 'success' })
@@ -83,15 +83,7 @@ export default function WheelPage({ wheelData }: { wheelData: WheelData | null }
 
   return (
     <>
-      <main className="flex min-h-screen flex-row items-start justify-center gap-5 flex-wrap mt-3">
-        <OptionsEditor options={state.options} dispatch={dispatch} />
-        <Button onClick={share}>
-          <Share />
-          Share
-        </Button>
-        <Link href={`https://twitter.com/intent/tweet?text=Check%20out%20my%20wheel%20at&url=${window.location.href}`} target="_blank">
-          <Twitter />
-        </Link>
+      <main className="flex min-h-screen flex-col items-center justify-center gap-5 flex-wrap mt-3">
         <Wheel
           options={state.options}
           colors={state.colors}
@@ -101,6 +93,17 @@ export default function WheelPage({ wheelData }: { wheelData: WheelData | null }
           height={wheelHeight}
           dispatch={dispatch}
         />
+        <OptionsEditor options={state.options} dispatch={dispatch} />
+        <Button onClick={share}>
+          <Share />
+          Share
+        </Button>
+        <IconButton
+          href={`https://twitter.com/intent/tweet?text=Check%20out%20my%20wheel%20at&url=${window?.location?.href}`}
+          target="_blank"
+        >
+          <Twitter />
+        </IconButton>
       </main>
       <WinnerDialog open={state.showWinnerDialog} label={currentSelectionLabel} dispatch={dispatch} />
     </>

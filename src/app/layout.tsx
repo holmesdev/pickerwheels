@@ -7,7 +7,7 @@ import Header from '@/components/layout/Header'
 import robotoFlex from '@/utils/fonts'
 
 export const metadata = {
-  title: 'Spinner Wheel',
+  title: 'Picker Wheels',
   description: 'Spin that wheel!',
 }
 

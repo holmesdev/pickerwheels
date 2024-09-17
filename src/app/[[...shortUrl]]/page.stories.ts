@@ -4,7 +4,7 @@ import Home from './page'
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta: Meta<typeof Home> = {
-  title: 'spinner-wheel-upgrade/Home',
+  title: 'Picker Wheels/Home',
   component: Home,
   tags: ['autodocs'],
 }

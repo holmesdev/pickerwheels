@@ -1,6 +1,6 @@
 {
-  "_id": "spinner-wheel-upgrade@0.1.0",
-  "name": "spinner-wheel-upgrade",
+  "_id": "pickerwheels@0.1.0",
+  "name": "pickerwheels",
   "version": "0.1.0",
   "private": true,
   "packageManager": "yarn@3.6.0",
