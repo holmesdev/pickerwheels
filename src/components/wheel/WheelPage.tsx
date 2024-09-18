@@ -9,11 +9,11 @@ import WinnerDialog from './WinnerDialog'
 import { WheelData, WheelState, defaultInitialState, getCurrentSelection, wheelReducer } from './wheelReducer'
 import Wheel from './Wheel'
 import { Database } from '@/db/types'
-import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context'
 import { Button, IconButton, Link } from '@mui/material'
 import Share from '@mui/icons-material/Share'
 import Twitter from '@mui/icons-material/Twitter'
 import { useSnackbar } from 'notistack'
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 
 function getInitialState(wheelData: WheelData | null) {
   let initialState = { ...defaultInitialState }
