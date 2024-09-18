@@ -1,0 +1,57 @@
+name: Playwright Tests
+on:
+  # pull_request:
+  workflow_dispatch:
+jobs:
+  test:
+    timeout-minutes: 5
+    runs-on: ubuntu-22.04
+    permissions:
+      actions: write
+      checks: write
+      contents: write
+      repository-projects: read
+
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.STAGING_SUPABASE_URL }}}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.STAGING_SUPABASE_ANON_KEY }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Install Playwright Browsers
+        run: yarn playwright install --with-deps
+
+      - name: Run Playwright tests
+        run: yarn playwright test
+
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+
+      - name: Upload Test Artifacts
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-artifacts
+          path: test-results/
+          retention-days: 30
+
+      - name: Show Report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: E2E Tests
+          path: playwright-report/results.xml
+          reporter: jest-junit
