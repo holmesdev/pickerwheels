@@ -1,7 +1,7 @@
 {
   "_id": "pickerwheels@0.1.0",
   "name": "pickerwheels",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "packageManager": "yarn@4.5.0",
   "scripts": {
