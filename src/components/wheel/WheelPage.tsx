@@ -14,6 +14,7 @@ import Share from '@mui/icons-material/Share'
 import Twitter from '@mui/icons-material/Twitter'
 import { useSnackbar } from 'notistack'
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
+import useCurrentUrl from '@/hooks/useCurrentUrl'
 
 function getInitialState(wheelData: WheelData | null) {
   let initialState = { ...defaultInitialState }
@@ -54,14 +55,15 @@ export default function WheelPage({ wheelData }: { wheelData: WheelData | null }
   const { enqueueSnackbar } = useSnackbar()
   const isUpdate = useRef(false)
   const { width: windowWidth } = useWindowDimensions()
+  const currentUrl = useCurrentUrl()
   const [state, dispatch] = useReducer(wheelReducer, getInitialState(wheelData))
 
   const share = () => {
     saveData(supabase, router, state).then(() => {
       if (typeof navigator.share !== 'undefined') {
-        navigator.share({ title: 'Picker Wheels', url: window.location.href })
+        navigator.share({ title: 'Picker Wheels', url: currentUrl })
       } else {
-        navigator.clipboard.writeText(window.location.href).then(() => {
+        navigator.clipboard.writeText(currentUrl).then(() => {
           enqueueSnackbar('Link copied to clipboard', { variant: 'success' })
         })
       }
@@ -99,7 +101,7 @@ export default function WheelPage({ wheelData }: { wheelData: WheelData | null }
           Share
         </Button>
         <IconButton
-          href={`https://twitter.com/intent/tweet?text=Check%20out%20my%20wheel%20at&url=${window?.location?.href}`}
+          href={`https://twitter.com/intent/tweet?text=Check%20out%20my%20wheel%20at&url=${currentUrl}`}
           target="_blank"
         >
           <Twitter />
