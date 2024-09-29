@@ -5,9 +5,19 @@ import robotoFlex from '@/utils/fonts'
 
 const PI = Math.PI
 const TAU = 2 * PI
-const friction = 0.991 // 0.995=soft, 0.99=mid, 0.98=hard
-const minimumAngularVelocity = 0.002 // Below that number will be treated as a stop
+const accelerationStopPercentage = 0.5
+const duration = 6000
+const rotationsForSpin = duration / 1000 * 3
 const rand = (min: number, max: number) => Math.random() * (max - min) + min
+
+// Easing function for acceleration and deceleration
+function easeInOutQuad(progressPercentage: number) {
+  if (progressPercentage < accelerationStopPercentage) {
+    return 2 * progressPercentage * progressPercentage
+  } else {
+    return -1 + (4 - 2 * progressPercentage) * progressPercentage
+  }
+}
 
 function Wheel({
   options,
@@ -28,25 +38,21 @@ function Wheel({
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const onSpin = useRef<() => void>()
+  const startingAngularRotation = useRef(stoppedAngularPosition || 0)
   const currentAngularRotation = useRef(stoppedAngularPosition || 0)
+  const centerX = useRef(0)
+  const centerY = useRef(0)
+  const offsetToNewWinner = useRef(PI / 2)
 
   useEffect(() => {
     const ctx = canvasRef.current!.getContext('2d')!
     const optionCount = options.filter((o) => o.enabled).length
     const arc = TAU / optionCount
 
-    let currentAngularVelocity = 0
-    let maximumAngularVelocity = 0
+    let animationZero = 0
     let isSpinning = false
-    let isAccelerating = false
-    let animationFrame: number | null = null
-
-    //* CSS rotate CANVAS Element */
-    const rotate = () => {
-      ctx.canvas.style.transform = `rotate(${currentAngularRotation.current - PI / 2}rad)`
-      // elSpin.textContent = !angVel ? 'SPIN' : sector.label
-      // elSpin.style.background = sector.color
-    }
+    centerX.current = ctx.canvas.width / 2
+    centerY.current = ctx.canvas.height / 2
 
     const drawSector = (option: Option, i: number) => {
       const ang = arc * i
@@ -71,37 +77,39 @@ function Wheel({
       ctx.restore()
     }
 
-    const frame = () => {
-      if (!isSpinning) {
-        return
-      }
-
-      if (currentAngularVelocity >= maximumAngularVelocity) {
-        isAccelerating = false
-      }
-
-      if (isAccelerating) {
-        currentAngularVelocity = (currentAngularVelocity || minimumAngularVelocity) * 1.1
-      } else {
-        currentAngularVelocity = currentAngularVelocity * friction
-
-        // SPIN END:
-        if (currentAngularVelocity < minimumAngularVelocity) {
-          isSpinning = false
-          currentAngularVelocity = 0
-          cancelAnimationFrame(animationFrame!)
-          dispatch({ type: 'SpinningStopped', stoppedAngularPosition: currentAngularRotation.current })
-        }
-      }
-
-      const previousAngularRotation = currentAngularRotation.current
-      currentAngularRotation.current = (currentAngularRotation.current + currentAngularVelocity) % TAU
-      rotate() // CSS rotate!
+    const endSpin = () => {
+      console.log(new Date())
+      isSpinning = false
+      animationZero = 0
+      dispatch({ type: 'SpinningStopped', stoppedAngularPosition: currentAngularRotation.current % TAU })
     }
 
-    const engine = () => {
-      frame()
-      animationFrame = requestAnimationFrame(engine)
+    const drawWheel = () => {
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+      ctx.save()
+      ctx.translate(centerX.current, centerY.current)
+      ctx.rotate(currentAngularRotation.current - PI / 2)
+      ctx.translate(-centerX.current, -centerY.current)
+      options.filter((option) => option.enabled).forEach((option, i) => drawSector(option, i))
+      ctx.restore()
+    }
+
+    const frame = (timestamp: number) => {
+      if (!animationZero) {
+        console.log(new Date())
+        animationZero = timestamp
+      }
+
+      const progress = Math.min((timestamp - animationZero) / duration, 1)
+      const easedProgress = easeInOutQuad(progress)
+      currentAngularRotation.current = (rotationsForSpin * TAU + offsetToNewWinner.current) * easedProgress + startingAngularRotation.current
+      drawWheel()
+
+      if(progress < 1) {
+        requestAnimationFrame(frame)
+      } else {
+        endSpin()
+      }
     }
 
     onSpin.current = () => {
@@ -110,14 +118,13 @@ function Wheel({
       }
       dispatch({ type: 'Spin' })
       isSpinning = true
-      isAccelerating = true
-      maximumAngularVelocity = rand(0.5, 0.9)
-      engine() // Start engine!
+      startingAngularRotation.current = currentAngularRotation.current
+      offsetToNewWinner.current = rand(0, TAU)
+      requestAnimationFrame(frame) // Start engine!
     }
 
     // INIT!
-    options.filter((option) => option.enabled).forEach((option, i) => drawSector(option, i))
-    rotate()
+    drawWheel()
   }, [colors, dispatch, options, showOptionLabels, stoppedAngularPosition, width, height])
 
   return (
