@@ -8,11 +8,12 @@ import MenuIcon from '@mui/icons-material/Menu'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { useState } from 'react'
+import { AuthError } from '@supabase/supabase-js'
 
-export default function Navbar({ loggedIn, onLogOut }: { loggedIn: boolean; onLogOut: () => Promise<void> }) {
+export default function Navbar({ loggedIn, onLogOut }: { loggedIn: boolean; onLogOut: () => Promise<{ error: AuthError | null }> }) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
-  const pages: { title: string; url?: string; action?: () => Promise<void> }[] = loggedIn
+  const pages: { title: string; url?: string; action?: () => Promise<{ error: AuthError | null}> }[] = loggedIn
     ? [
         {
           title: 'Log Out',

@@ -35,18 +35,21 @@ function getInitialState(wheelData: WheelData | null) {
   return initialState
 }
 
-async function saveData(supabase: SupabaseClient<Database>, router: AppRouterInstance, state: WheelState) {
-  const { data, error } = await supabase.rpc('upsert_wheel', {
+function saveData(supabase: SupabaseClient<Database>, router: AppRouterInstance, state: WheelState) {
+  return supabase.rpc('upsert_wheel', {
     short_url: state.shortUrl || null,
     last_position: state.stoppedAngularPosition,
     show_option_labels: state.showOptionLabels,
     option_labels: state.options.map((o) => o.label),
     options_enabled: state.options.map((o) => o.enabled),
     colors: state.colors,
+  }).then(data => {
+    if (!state.shortUrl) {
+      router.replace('/' + data)
+    }
+    return data
   })
-  if (!error && !state.shortUrl) {
-    router.replace('/' + data)
-  }
+  
 }
 
 export default function WheelPage({ wheelData }: { wheelData: WheelData | null }) {
