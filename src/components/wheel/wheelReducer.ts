@@ -25,7 +25,7 @@ export function wheelReducer(state: WheelState, action: WheelActions): WheelStat
         showWinnerDialog: false,
         options: action.hideOption
           ? state.options.map((o) =>
-              o.id === state.options.filter((o) => o.enabled)[getIndex(state)].id ? { ...o, enabled: !o.enabled } : o
+              o.id === state.options.filter((o) => o.enabled)[getIndex(state)].id ? { ...o, enabled: !o.enabled } : o,
             )
           : state.options,
       }

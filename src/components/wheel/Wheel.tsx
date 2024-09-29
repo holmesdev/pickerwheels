@@ -7,7 +7,7 @@ const PI = Math.PI
 const TAU = 2 * PI
 const accelerationStopPercentage = 0.5
 const duration = 6000
-const rotationsForSpin = duration / 1000 * 3
+const rotationsForSpin = (duration / 1000) * 3
 const rand = (min: number, max: number) => Math.random() * (max - min) + min
 
 // Easing function for acceleration and deceleration
@@ -102,10 +102,11 @@ function Wheel({
 
       const progress = Math.min((timestamp - animationZero) / duration, 1)
       const easedProgress = easeInOutQuad(progress)
-      currentAngularRotation.current = (rotationsForSpin * TAU + offsetToNewWinner.current) * easedProgress + startingAngularRotation.current
+      currentAngularRotation.current =
+        (rotationsForSpin * TAU + offsetToNewWinner.current) * easedProgress + startingAngularRotation.current
       drawWheel()
 
-      if(progress < 1) {
+      if (progress < 1) {
         requestAnimationFrame(frame)
       } else {
         endSpin()

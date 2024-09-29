@@ -100,10 +100,7 @@ export default function WheelPage({ wheelData }: { wheelData: WheelData | null }
           <Share />
           Share
         </Button>
-        <IconButton
-          href={`https://twitter.com/intent/tweet?text=Check%20out%20my%20wheel%20at&url=${currentUrl}`}
-          target="_blank"
-        >
+        <IconButton href={`https://twitter.com/intent/tweet?text=Check%20out%20my%20wheel%20at&url=${currentUrl}`} target="_blank">
           <Twitter />
         </IconButton>
       </main>
