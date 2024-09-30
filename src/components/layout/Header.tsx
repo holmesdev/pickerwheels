@@ -19,8 +19,8 @@ export default function Header() {
     }
   }, [supabase])
 
-  const onLogOut = async () => {
-    await supabase.auth.signOut()
+  const onLogOut = () => {
+    return supabase.auth.signOut()
   }
 
   return <Navbar loggedIn={loggedIn} onLogOut={onLogOut} />

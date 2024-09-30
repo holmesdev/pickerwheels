@@ -22,7 +22,7 @@ export default async function Home({ params: { shortUrl } }: { params: { shortUr
       wheel_colors (
         hex_code
       )
-    `
+    `,
       )
       .eq('short_url', shortUrl[0])
       .returns<WheelData[]>()

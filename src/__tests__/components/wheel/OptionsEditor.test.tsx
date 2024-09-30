@@ -11,7 +11,7 @@ describe('OptionsEditor', () => {
           { id: 2, label: 'other', enabled: true },
         ]}
         dispatch={jest.fn()}
-      />
+      />,
     )
 
     // 1 input for new, 2 inputs for existing

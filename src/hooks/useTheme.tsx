@@ -32,6 +32,6 @@ export function useTheme(darkModeCookie: string | undefined) {
         allVariants: { fontFamily: RobotoFlex.style.fontFamily },
       },
     },
-    {} satisfies ThemeOptions
+    {} satisfies ThemeOptions,
   )
 }
