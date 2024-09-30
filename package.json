@@ -13,8 +13,6 @@
     "lint": "next lint",
     "test": "jest",
     "e2e": "playwright test",
-    "storybook:dev": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
     "chromatic": "chromatic --exit-once-uploaded",
     "db:types": "line_number=$(sed -n '/upsert_wheel/=' src/db/types.ts) && supabase gen types typescript --local | sed \"$(expr $line_number + 2)s/string/string | null/\" > src/db/types.ts",
     "db:create-migration": "supabase migration new",
@@ -42,16 +40,8 @@
     "typescript": "5.6.2"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^1",
     "@next/bundle-analyzer": "14.2.11",
     "@playwright/test": "1.47.1",
-    "@storybook/addon-essentials": "^8.3.1",
-    "@storybook/addon-interactions": "^8.3.1",
-    "@storybook/addon-links": "^8.3.1",
-    "@storybook/blocks": "^8.3.1",
-    "@storybook/nextjs": "^8.3.1",
-    "@storybook/react": "^8.3.1",
-    "@storybook/test": "^8.3.1",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
@@ -60,7 +50,6 @@
     "@types/node": "20.16.5",
     "@types/react": "18.3.6",
     "@types/react-dom": "18.3.0",
-    "chromatic": "11.10.2",
     "eslint": "8.57.1",
     "eslint-config-next": "14.2.11",
     "eslint-plugin-storybook": "^0.8.0",
@@ -68,7 +57,6 @@
     "jest-canvas-mock": "^2.5.2",
     "jest-environment-jsdom": "^29.7.0",
     "jest-junit": "^16.0.0",
-    "prettier": "^3.3.3",
-    "storybook": "^8.3.1"
+    "prettier": "^3.3.3"
   }
 }
