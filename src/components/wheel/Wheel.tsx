@@ -5,17 +5,23 @@ import robotoFlex from '@/utils/fonts'
 
 const PI = Math.PI
 const TAU = 2 * PI
-const accelerationStopPercentage = 0.5
+const accelerationStopPercentage = 0.1
 const duration = 6000
 const rotationsForSpin = (duration / 1000) * 3
 const rand = (min: number, max: number) => Math.random() * (max - min) + min
+const TARGET_FPS = 120
+const FRAME_TIME = 1000 / TARGET_FPS
 
-// Easing function for acceleration and deceleration
-function easeInOutQuad(progressPercentage: number) {
+// Improved easing function for more natural wheel physics
+function easeInOutCubic(progressPercentage: number) {
   if (progressPercentage < accelerationStopPercentage) {
-    return 2 * progressPercentage * progressPercentage
+    // Acceleration phase - cubic ease-in
+    const t = progressPercentage / accelerationStopPercentage
+    return t * t * t
   } else {
-    return -1 + (4 - 2 * progressPercentage) * progressPercentage
+    // Deceleration phase - cubic ease-out
+    const t = (progressPercentage - accelerationStopPercentage) / (1 - accelerationStopPercentage)
+    return 1 - (1 - t) * (1 - t) * (1 - t)
   }
 }
 
@@ -42,14 +48,18 @@ function Wheel({
   const offsetToNewWinner = useRef(PI / 2)
   const optionCount = options.filter((o) => o.enabled).length
   const arc = TAU / optionCount
+  const lastFrameTime = useRef(0)
+  const animationFrameId = useRef<number>(0)
 
   let animationZero = 0
   let isSpinning = false
 
   const endSpin = () => {
-    console.log(new Date())
     isSpinning = false
     animationZero = 0
+    if (animationFrameId.current) {
+      cancelAnimationFrame(animationFrameId.current)
+    }
     dispatch({ type: 'SpinningStopped', stoppedAngularPosition: currentAngularRotation.current % TAU })
   }
 
@@ -93,17 +103,24 @@ function Wheel({
 
   const frame = (timestamp: number) => {
     if (!animationZero) {
-      console.log(new Date())
       animationZero = timestamp
+      lastFrameTime.current = timestamp
     }
 
-    const progress = Math.min((timestamp - animationZero) / duration, 1)
-    const easedProgress = easeInOutQuad(progress)
-    currentAngularRotation.current = (rotationsForSpin * TAU + offsetToNewWinner.current) * easedProgress + startingAngularRotation.current
-    drawWheel(canvasRef.current!.getContext('2d')!)
+    // Calculate time since last frame
+    const deltaTime = timestamp - lastFrameTime.current
 
-    if (progress < 1) {
-      requestAnimationFrame(frame)
+    // Only update if enough time has passed for 60 FPS
+    if (deltaTime >= FRAME_TIME) {
+      const progress = Math.min((timestamp - animationZero) / duration, 1)
+      const easedProgress = easeInOutCubic(progress)
+      currentAngularRotation.current = (rotationsForSpin * TAU + offsetToNewWinner.current) * easedProgress + startingAngularRotation.current
+      drawWheel(canvasRef.current!.getContext('2d')!)
+      lastFrameTime.current = timestamp
+    }
+
+    if (timestamp - animationZero < duration) {
+      animationFrameId.current = requestAnimationFrame(frame)
     } else {
       endSpin()
     }
@@ -117,12 +134,20 @@ function Wheel({
     isSpinning = true
     startingAngularRotation.current = currentAngularRotation.current
     offsetToNewWinner.current = rand(0, TAU)
-    requestAnimationFrame(frame) // Start engine!
+    animationFrameId.current = requestAnimationFrame(frame)
   }
+
+  // Cleanup animation frame on unmount
+  useEffect(() => {
+    return () => {
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current)
+      }
+    }
+  }, [])
 
   // Initialize wheel on mount and when dependencies change
   useEffect(() => {
-    // INIT!
     drawWheel(canvasRef.current!.getContext('2d')!)
   }, [drawWheel, width, height])
 
