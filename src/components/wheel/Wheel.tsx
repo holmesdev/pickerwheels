@@ -114,7 +114,8 @@ function Wheel({
     if (deltaTime >= FRAME_TIME) {
       const progress = Math.min((timestamp - animationZero) / duration, 1)
       const easedProgress = easeInOutCubic(progress)
-      currentAngularRotation.current = (rotationsForSpin * TAU + offsetToNewWinner.current) * easedProgress + startingAngularRotation.current
+      currentAngularRotation.current =
+        (rotationsForSpin * TAU + offsetToNewWinner.current) * easedProgress + startingAngularRotation.current
       drawWheel(canvasRef.current!.getContext('2d')!)
       lastFrameTime.current = timestamp
     }
