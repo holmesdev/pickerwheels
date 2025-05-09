@@ -90,24 +90,38 @@ export default function WheelPage({ wheelData }: { wheelData: WheelData | null }
 
   return (
     <>
-      <main className="flex min-h-screen flex-col items-center justify-center gap-5 flex-wrap mt-3">
-        <Wheel
-          options={state.options}
-          colors={state.colors}
-          stoppedAngularPosition={state.stoppedAngularPosition}
-          showOptionLabels={state.showOptionLabels}
-          width={wheelWidth}
-          height={wheelHeight}
-          dispatch={dispatch}
-        />
-        <OptionsEditor options={state.options} dispatch={dispatch} />
-        <Button onClick={share}>
-          <Share />
-          Share
-        </Button>
-        <IconButton href={`https://twitter.com/intent/tweet?text=Check%20out%20my%20wheel%20at&url=${currentUrl}`} target="_blank">
-          <Twitter />
-        </IconButton>
+      <main className="flex min-h-screen flex-col items-center p-4 pt-8">
+        <div className="flex flex-col md:flex-row items-center gap-8 max-w-6xl w-full mx-auto md:justify-center">
+          {/* Wheel Section */}
+          <div className="flex flex-col items-center gap-4">
+            <Wheel
+              options={state.options}
+              colors={state.colors}
+              stoppedAngularPosition={state.stoppedAngularPosition}
+              showOptionLabels={state.showOptionLabels}
+              width={wheelWidth}
+              height={wheelHeight}
+              dispatch={dispatch}
+            />
+            <div className="flex gap-2">
+              <Button onClick={share} variant="contained" startIcon={<Share />}>
+                Share
+              </Button>
+              <IconButton
+                href={`https://twitter.com/intent/tweet?text=Check%20out%20my%20wheel%20at&url=${currentUrl}`}
+                target="_blank"
+                color="primary"
+              >
+                <Twitter />
+              </IconButton>
+            </div>
+          </div>
+
+          {/* Options Section */}
+          <div className="w-full md:w-auto md:min-w-[300px]">
+            <OptionsEditor options={state.options} dispatch={dispatch} />
+          </div>
+        </div>
       </main>
       <WinnerDialog open={state.showWinnerDialog} label={currentSelectionLabel} dispatch={dispatch} />
     </>
