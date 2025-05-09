@@ -3,11 +3,11 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useSnackbar } from 'notistack'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { createClient } from '@/utils/supabase/client'
 import ResetPasswordForm from '@/components/auth/ResetPasswordForm'
 
 export default function ResetPassword() {
-  const supabase = createClientComponentClient()
+  const supabase = createClient()
   const router = useRouter()
   const { enqueueSnackbar } = useSnackbar()
   const [loading, setLoading] = useState(false)

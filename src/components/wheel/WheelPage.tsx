@@ -2,7 +2,7 @@
 
 import { useEffect, useReducer, useRef } from 'react'
 import { useRouter } from 'next/navigation'
-import { SupabaseClient, createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { createClient } from '@/utils/supabase/client'
 import useWindowDimensions from '@/hooks/useWindowDimensions'
 import OptionsEditor from './OptionsEditor'
 import WinnerDialog from './WinnerDialog'
@@ -15,6 +15,7 @@ import Twitter from '@mui/icons-material/Twitter'
 import { useSnackbar } from 'notistack'
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 import useCurrentUrl from '@/hooks/useCurrentUrl'
+import { SupabaseClient } from '@supabase/supabase-js'
 
 function getInitialState(wheelData: WheelData | null) {
   let initialState = { ...defaultInitialState }
@@ -54,7 +55,7 @@ function saveData(supabase: SupabaseClient<Database>, router: AppRouterInstance,
 }
 
 export default function WheelPage({ wheelData }: { wheelData: WheelData | null }) {
-  const supabase = createClientComponentClient<Database>()
+  const supabase = createClient()
   const router = useRouter()
   const { enqueueSnackbar } = useSnackbar()
   const isUpdate = useRef(false)

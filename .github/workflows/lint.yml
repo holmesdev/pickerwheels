@@ -12,8 +12,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'yarn'
+
       - name: Install Dependencies
         run: yarn install --immutable
 
-      - name: Lint Project
-        run: yarn lint
+      - name: Check formatting, linting, type checking and building
+        run: yarn ci

@@ -1,12 +1,14 @@
 import WheelPage from '@/components/wheel/WheelPage'
 import { WheelData } from '@/components/wheel/wheelReducer'
-import { Database } from '@/db/types'
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
+import { createClient } from '@/utils/supabase/server'
 
-export default async function Home({ params: { shortUrl } }: { params: { shortUrl?: string[] } }) {
+type Params = Promise<{ shortUrl: string[] }>
+
+export default async function Home({ params }: { params: Params }) {
+  const shortUrl = (await params).shortUrl
   let wheelData: WheelData | null = null
-  const supabase = createServerComponentClient<Database>({ cookies })
+  const supabase = await createClient()
+
   if (shortUrl && shortUrl.length >= 1) {
     const { data, error } = await supabase
       .from('wheels')

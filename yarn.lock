@@ -1290,6 +1290,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mui/material-nextjs@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "@mui/material-nextjs@npm:7.1.0"
+  dependencies:
+    "@babel/runtime": "npm:^7.27.1"
+  peerDependencies:
+    "@emotion/cache": ^11.11.0
+    "@emotion/react": ^11.11.4
+    "@emotion/server": ^11.11.0
+    "@types/react": ^17.0.0 || ^18.0.0 || ^19.0.0
+    next: ^13.0.0 || ^14.0.0 || ^15.0.0
+    react: ^17.0.0 || ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    "@emotion/cache":
+      optional: true
+    "@emotion/server":
+      optional: true
+    "@types/react":
+      optional: true
+  checksum: 10c0/64c442154754fd60ddd0115b85d89d0ca5a9e489af758d2ebda1daa41b1e3c53e53ce7e28eb6c312136477b2c22d88ae6e59b40c5171c97186b5d9f73f811bca
+  languageName: node
+  linkType: hard
+
 "@mui/material@npm:7.1.0":
   version: 7.1.0
   resolution: "@mui/material@npm:7.1.0"
@@ -1656,29 +1679,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@supabase/auth-helpers-nextjs@npm:^0.10.0":
-  version: 0.10.0
-  resolution: "@supabase/auth-helpers-nextjs@npm:0.10.0"
-  dependencies:
-    "@supabase/auth-helpers-shared": "npm:0.7.0"
-    set-cookie-parser: "npm:^2.6.0"
-  peerDependencies:
-    "@supabase/supabase-js": ^2.39.8
-  checksum: 10c0/83e6e7f514fcdc4c6f4097cbf7d8fb424ba9f1b8ff4799b8670126e9e5b9f2b1dba47e028925f26dee1b6cd749ee421478a0148b0a9c48b75c5368731acb3150
-  languageName: node
-  linkType: hard
-
-"@supabase/auth-helpers-shared@npm:0.7.0":
-  version: 0.7.0
-  resolution: "@supabase/auth-helpers-shared@npm:0.7.0"
-  dependencies:
-    jose: "npm:^4.14.4"
-  peerDependencies:
-    "@supabase/supabase-js": ^2.39.8
-  checksum: 10c0/c356d9599a9086966796912fe27018cf4c131fb546e99f4a25f4be585025d7fc0f797cae45954c24826f4e9f4ecc6b80b68f7b534ddfc8f1449d8326046ceaec
-  languageName: node
-  linkType: hard
-
 "@supabase/auth-js@npm:2.69.1":
   version: 2.69.1
   resolution: "@supabase/auth-js@npm:2.69.1"
@@ -1724,6 +1724,17 @@ __metadata:
     "@types/ws": "npm:^8.5.10"
     ws: "npm:^8.18.0"
   checksum: 10c0/1e91c8e70d4bf2cd25ed9d7d8c75c0fcc2ef4f53d03647cbaac790cf9f359295b5aa6ce0876f12e7e15804cfe9979398cd57fc92f19a43ee4e691d29abbe8e14
+  languageName: node
+  linkType: hard
+
+"@supabase/ssr@npm:^0.6.1":
+  version: 0.6.1
+  resolution: "@supabase/ssr@npm:0.6.1"
+  dependencies:
+    cookie: "npm:^1.0.1"
+  peerDependencies:
+    "@supabase/supabase-js": ^2.43.4
+  checksum: 10c0/a3b98b5eae50b6e1a58ef3abc5fbcd298ad20f4602a3a5835ab3946ddfb482e5a5c50789c577498ea30e64939b5019859ea7e4566eb417b6bc1624f7a5635e8b
   languageName: node
   linkType: hard
 
@@ -3315,6 +3326,13 @@ __metadata:
   version: 0.7.2
   resolution: "cookie@npm:0.7.2"
   checksum: 10c0/9596e8ccdbf1a3a88ae02cf5ee80c1c50959423e1022e4e60b91dd87c622af1da309253d8abdb258fb5e3eacb4f08e579dc58b4897b8087574eee0fd35dfa5d2
+  languageName: node
+  linkType: hard
+
+"cookie@npm:^1.0.1":
+  version: 1.0.2
+  resolution: "cookie@npm:1.0.2"
+  checksum: 10c0/fd25fe79e8fbcfcaf6aa61cd081c55d144eeeba755206c058682257cb38c4bd6795c6620de3f064c740695bb65b7949ebb1db7a95e4636efb8357a335ad3f54b
   languageName: node
   linkType: hard
 
@@ -6334,13 +6352,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jose@npm:^4.14.4":
-  version: 4.15.9
-  resolution: "jose@npm:4.15.9"
-  checksum: 10c0/4ed4ddf4a029db04bd167f2215f65d7245e4dc5f36d7ac3c0126aab38d66309a9e692f52df88975d99429e357e5fd8bab340ff20baab544d17684dd1d940a0f4
-  languageName: node
-  linkType: hard
-
 "js-tokens@npm:^3.0.0 || ^4.0.0, js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -7528,9 +7539,10 @@ __metadata:
     "@emotion/styled": "npm:^11.14.0"
     "@mui/icons-material": "npm:^7.1.0"
     "@mui/material": "npm:7.1.0"
+    "@mui/material-nextjs": "npm:^7.1.0"
     "@next/bundle-analyzer": "npm:15.3.2"
     "@playwright/test": "npm:1.52.0"
-    "@supabase/auth-helpers-nextjs": "npm:^0.10.0"
+    "@supabase/ssr": "npm:^0.6.1"
     "@supabase/supabase-js": "npm:^2.49.4"
     "@tailwindcss/postcss": "npm:^4.1.6"
     "@testing-library/dom": "npm:^10.4.0"
@@ -8210,13 +8222,6 @@ __metadata:
     parseurl: "npm:^1.3.3"
     send: "npm:^1.2.0"
   checksum: 10c0/30e2ed1dbff1984836cfd0c65abf5d3f3f83bcd696c99d2d3c97edbd4e2a3ff4d3f87108a7d713640d290a7b6fe6c15ddcbc61165ab2eaad48ea8d3b52c7f913
-  languageName: node
-  linkType: hard
-
-"set-cookie-parser@npm:^2.6.0":
-  version: 2.7.0
-  resolution: "set-cookie-parser@npm:2.7.0"
-  checksum: 10c0/5ccb2d0389bda27631d57e44644319f0b77200e7c8bd1515824eb83dbd2d351864a29581f7e7f977a5aeb83c3ec9976e69b706a80ac654152fd26353011ffef4
   languageName: node
   linkType: hard
 

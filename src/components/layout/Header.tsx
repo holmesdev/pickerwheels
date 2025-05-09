@@ -1,11 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { createClient } from '@/utils/supabase/client'
 import Navbar from './Navbar'
 
 export default function Header() {
-  const supabase = createClientComponentClient()
+  const supabase = createClient()
   const [loggedIn, setLoggedIn] = useState(false)
   useEffect(() => {
     const {

@@ -3,11 +3,11 @@
 import { useSnackbar } from 'notistack'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { createClient } from '@/utils/supabase/client'
 import RegisterForm from '@/components/auth/RegisterForm'
 
 export default function Register() {
-  const supabase = createClientComponentClient()
+  const supabase = createClient()
   const router = useRouter()
   const { enqueueSnackbar } = useSnackbar()
   const [loading, setLoading] = useState(false)
