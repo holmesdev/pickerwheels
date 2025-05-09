@@ -13,7 +13,7 @@ import { AuthError } from '@supabase/supabase-js'
 export default function Navbar({ loggedIn, onLogOut }: { loggedIn: boolean; onLogOut: () => Promise<{ error: AuthError | null }> }) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
-  const pages: { title: string; url?: string; action?: () => Promise<{ error: AuthError | null}> }[] = loggedIn
+  const pages: { title: string; url?: string; action?: () => Promise<{ error: AuthError | null }> }[] = loggedIn
     ? [
         {
           title: 'Log Out',

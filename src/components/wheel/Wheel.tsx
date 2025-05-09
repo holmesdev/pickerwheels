@@ -1,4 +1,4 @@
-import { Dispatch, memo, useEffect, useRef, useState } from 'react'
+import { Dispatch, memo, useEffect, useRef } from 'react'
 import { Option } from './option'
 import { WheelActions } from './wheelReducer'
 import robotoFlex from '@/utils/fonts'
@@ -96,8 +96,7 @@ function Wheel({
 
     const progress = Math.min((timestamp - animationZero) / duration, 1)
     const easedProgress = easeInOutQuad(progress)
-    currentAngularRotation.current =
-      (rotationsForSpin * TAU + offsetToNewWinner.current) * easedProgress + startingAngularRotation.current
+    currentAngularRotation.current = (rotationsForSpin * TAU + offsetToNewWinner.current) * easedProgress + startingAngularRotation.current
     drawWheel(canvasRef.current!.getContext('2d')!)
 
     if (progress < 1) {
@@ -129,7 +128,7 @@ function Wheel({
       <div
         id="spin"
         // eslint-disable-next-line max-len
-        className="text-2xl select-none cursor-pointer flex justify-center items-center absolute top-[50%] left-[50%] w-[20%] h-[20%] m-[-10%] bg-slate-500 text-white shadow-[0_0_0_8px_currentColor,0_0px_15px_5px_rgba(0,0,0,0.6)] rounded-[50%] transition-[0.8s] after:absolute after:top-[-17px] after:border-[10px] after:border-solid after:border-transparent after:border-b-current after:[border-top:none] after:content-['']"
+        className="text-2xl select-none cursor-pointer flex justify-center items-center absolute top-[50%] left-[50%] w-[20%] h-[20%] m-[-10%] bg-slate-500 text-white shadow-[0_0_0_8px_currentColor,0_0px_15px_5px_rgba(0,0,0,0.6)] rounded-[50%] transition-[0.8s] after:absolute after:top-[-17px] after:border-10 after:border-solid after:border-transparent after:border-b-current after:[border-top:none] after:content-['']"
         onClick={onSpin}
       >
         Spin!

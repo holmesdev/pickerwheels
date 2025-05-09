@@ -9,7 +9,7 @@ import WinnerDialog from './WinnerDialog'
 import { WheelData, WheelState, defaultInitialState, getCurrentSelection, wheelReducer } from './wheelReducer'
 import Wheel from './Wheel'
 import { Database } from '@/db/types'
-import { Button, IconButton, Link } from '@mui/material'
+import { Button, IconButton } from '@mui/material'
 import Share from '@mui/icons-material/Share'
 import Twitter from '@mui/icons-material/Twitter'
 import { useSnackbar } from 'notistack'
@@ -36,20 +36,21 @@ function getInitialState(wheelData: WheelData | null) {
 }
 
 function saveData(supabase: SupabaseClient<Database>, router: AppRouterInstance, state: WheelState) {
-  return supabase.rpc('upsert_wheel', {
-    short_url: state.shortUrl || null,
-    last_position: state.stoppedAngularPosition,
-    show_option_labels: state.showOptionLabels,
-    option_labels: state.options.map((o) => o.label),
-    options_enabled: state.options.map((o) => o.enabled),
-    colors: state.colors,
-  }).then(data => {
-    if (!state.shortUrl) {
-      router.replace('/' + data)
-    }
-    return data
-  })
-  
+  return supabase
+    .rpc('upsert_wheel', {
+      short_url: state.shortUrl || null,
+      last_position: state.stoppedAngularPosition,
+      show_option_labels: state.showOptionLabels,
+      option_labels: state.options.map((o) => o.label),
+      options_enabled: state.options.map((o) => o.enabled),
+      colors: state.colors,
+    })
+    .then((response) => {
+      if (!response.error && !state.shortUrl) {
+        router.replace('/' + response.data)
+      }
+      return response
+    })
 }
 
 export default function WheelPage({ wheelData }: { wheelData: WheelData | null }) {
