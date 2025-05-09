@@ -25,11 +25,12 @@ export function useTheme(darkModeCookie: string | undefined) {
           },
         },
       },
+      cssVariables: true,
       palette: {
         mode: darkMode ? 'dark' : 'light',
       },
       typography: {
-        allVariants: { fontFamily: RobotoFlex.style.fontFamily },
+        fontFamily: 'var(--font-roboto)',
       },
     },
     {} satisfies ThemeOptions,

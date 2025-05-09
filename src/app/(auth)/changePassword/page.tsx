@@ -3,11 +3,11 @@
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 import { useSnackbar } from 'notistack'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { createClient } from '@/utils/supabase/client'
 import ChangePasswordForm from '@/components/auth/ChangePasswordForm'
 
 export default function ChangePassword() {
-  const supabase = createClientComponentClient()
+  const supabase = createClient()
   const router = useRouter()
   const searchParams = useSearchParams()
   const { enqueueSnackbar } = useSnackbar()

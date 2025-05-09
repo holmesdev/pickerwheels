@@ -1,2 +1,2 @@
-@tailwind components;
-@tailwind utilities;
+@layer theme, base, mui, components, utilities;
+@import 'tailwindcss';
